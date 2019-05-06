@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content><meta name="keywords" content><meta name="author" content="John Doe,undefined"><meta name="copyright" content="John Doe"><title>【Hexo】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="icon" href="/favicon.ico"><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/avatar.png"></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/fan-lv" target="_blank">GitHub<i class="icon-dot bg-color3"></i></a><a class="links-button button-hover" href="mailto:15757856604@163.com" target="_blank">E-Mail<i class="icon-dot bg-color5"></i></a><a class="links-button button-hover" href="tencent://message/?uin=1019593584&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color4"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">5</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Hexo</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title"></div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2019-05-06 | 更新于 2019-05-06</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"></div><div class="button-hover tags"></div></div></div><div class="main-content"><ol>
+<li><p>Http协议与Cookie（了解）</p>
+<ul>
+<li>Cookie是HTTP协议制定的！先由服务器保存Cookie到浏览器，再下次浏览器请求服务器时把上一次请求得到Cookie再归还给服务器</li>
+<li>由服务器创建保存到客户端浏览器的一个键值对！服务器保存Cookie的响应头：Set-Cookie: aaa=AAA  Set-Cookie: bbb=BBB<blockquote>
+<p>response.addHeader(“Set-Cookie”, “aaa=AAA”);response.addHeader(“Set-Cookie”, “bbb=BBB”);</p>
+</blockquote>
+</li>
+<li>当浏览器请求服务器时，会把该服务器保存的Cookie随请求发送给服务器。浏览器归还Cookie的请求头：Cookie: aaa=AAA; bbb=BBB</li>
+<li>Http协议规定（保证不给浏览器太大压力）：<blockquote>
+<p>1个Cookie最大4KB<br>1个服务器最多向1个浏览器保存20个Cookie<br>1个浏览器最多可以保存300个Cookie</p>
+</blockquote>
+</li>
+<li>浏览器大战：因为浏览器竞争很激励，所以很多浏览器都会在一定范围内违反HTTP规定，但也不会让一个Cookie为4GB！</li>
+</ul>
+</li>
+<li><p>Cookie的用途</p>
+<ul>
+<li>服务器使用Cookie来跟踪客户端状态！</li>
+<li>保存购物车(购物车中的商品不能使用request保存，因为它是一个用户向服务器发送的多个请求信息)</li>
+<li>显示上次登录名(也是一个用户多个请求)</li>
+</ul>
+<p><strong><strong>**</strong></strong>Cookie是不能跨浏览器的！<strong><strong>***</strong></strong></p>
+</li>
+<li><p>JavaWeb中使用Cookie</p>
+<ul>
+<li>原始方式（了解）：<blockquote>
+<p>使用response发送Set-Cookie响应头<br>使用request获取Cookie请求头</p>
+</blockquote>
+</li>
+<li>便捷方式（精通）：<blockquote>
+<p>使用repsonse.addCookie()方法向浏览器保存Cookie<br>使用request.getCookies()方法获取浏览器归还的Cookie<br><br><br><br></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的官方说法，意思大概就是说，cookie是服务器给浏览器展示保存。里面存放着用户的一些相关操作，大白话就是说，服务器就像一个医生，浏览器就是一个病人，cookie就是病例，医生每天都要处理大量病人。也不记得病人的具体情况，就在病例上面记录病人的详细信息。下次来的时候，直接看病例就行，就知道之前自己具体干了什么，也就了解的病人的大致情况。病人每次去看医生时带上病例就行，开始的时候没有病例，医生就个一本病例。当病人病好了，病例一丢，从此谁也不认识了（这就是用户结束回话是，浏览器上的相应cookie就会被销毁，当然，这是在没有设置cookie生命时长的情况下）。万事都有例外嘛；</p>
+<p>什么是一次回话呢？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就是打开浏览器，进入一个页面，进行乱七八糟的操作，只要你不关闭浏览器，或者强制退出浏览器，那就意味着这次会话没有结束，当然关闭浏览器，什么也就都没了（前提是没设置cookie的生命时长）。也就是会话结束了</p>
+<p>Session是什么呢？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;举个不好的例子，一个病人病了几年，有一大堆的病例，每次来的时候，不会吧这些病例都带到医院给医生看吧，问题就升级了，医院是不是该做些什么呢？<br>医院就可以建立一个数据库，保留用户的所有信息，在给病人一张卡，（Id），就可以通过看来直接定位这个病人的所有消息了。从而得到合理的处理。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大前提。Cookie我针对的是病例，session中的cookie我说的是就诊卡。两种不同的概念，两个不同的情形。<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;言而总之，病人到医院看病，必须带一个东西，进行身份认证，进而得到更好的服务。所以所cookie。就是那个身份认证的证件。你没有这个cookie的时候，医院给你发一个。有的时候，直接带到医院就可以得到更好的服务。那么问题有来了。我要session干什么了。由于信息量太大，用户携带不方便，医生翻阅也不方便，所以，用session的时候，医生就可以通过你的cookie，也就是这张就诊卡，来锁定你的信息所要放的位置了。这样都相对轻松一些，只是医院的代价要大一点。（要构建数据库嘛）</p>
+<p>不管是病例还是就诊卡，都是医院发的，这一点要搞清楚。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cookie，是服务器给用户的，session也是服务器给用户的，但是cookie在使用时医生是该干嘛干嘛，而使用session是，医生需要通过就诊卡，去找到相应数据库里面的记录。<br>Cookie和session都是服务器提供的。</p>
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/05/06/cookieANDsession/">http://yoursite.com/2019/05/06/cookieANDsession/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Hexo</a>！</span></div></div></article><div id="pagination"><div class="prev-post pull-left"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2019/05/06/读谷歌的三篇重要论文的观后感/"><i class="fas fa-angle-left">&nbsp;</i><span></span></a></div><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2019/04/18/浅谈java和c++中的自己发现的区别/"><span></span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2019 By John Doe</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>
